@@ -27,6 +27,27 @@ contract DBMetaverse {
     mapping(address => Item[]) public userItems;
     mapping(address => bool) public tournamentParticipants;
 
+    function getItems() public view returns (Item[] memory) {
+        return items;
+    }
+
+    function getTournaments() public view returns (Tournament[] memory) {
+        return tournaments;
+    }
+
+    function getMyItems() public view returns (Item[] memory) {
+        return userItems[msg.sender];
+    }
+
+    function myItemsCount() public view returns (uint) {
+        return userItems[msg.sender].length;
+    }
+
+    function itemsCount() public view returns (uint) {
+        require(msg.sender == owner, "Only the owner can see the number of items.");
+        return items.length;
+    }
+
     function enterPark() public payable {
         require(msg.value >= entranceFee, "Not enough Ether provided.");
         payable(owner).transfer(entranceFee);
