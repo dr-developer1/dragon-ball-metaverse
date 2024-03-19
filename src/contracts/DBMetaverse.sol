@@ -1,6 +1,6 @@
 pragma solidity >=0.7.0 <0.9.0;
 
-contract DBMetaverse {
+contract c {
 
     address public owner;
     uint public entranceFee = 0.1 ether;
